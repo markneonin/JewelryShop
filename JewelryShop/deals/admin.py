@@ -8,6 +8,10 @@ from .models import *
 
 @admin.register(Gem)
 class GemAdmin(admin.ModelAdmin):
+    """
+    Добавляет в меню Gem столбец с каунтером-ссылкой на сделки по этому камню
+    """
+
     list_display = ('name', 'view_deals_link')
 
     def view_deals_link(self, obj):
@@ -24,7 +28,9 @@ class GemAdmin(admin.ModelAdmin):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-
+    """
+    Добавляет в меню Customer столбец с каунтером-ссылкой на сделки этого клиента
+    """
     list_display = ('name', 'view_deals_link')
 
     def view_deals_link(self, obj):
@@ -41,7 +47,9 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(Deal)
 class DealAdmin(admin.ModelAdmin):
-
+    """
+    Добавляет в меню Deal столбцы с ссылками на Gem и Customer
+    """
     list_display = ('view_customer_link', 'view_gem_link', 'amount', 'quantity', 'date')
 
     def view_customer_link(self, obj):

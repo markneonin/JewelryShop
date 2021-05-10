@@ -6,8 +6,17 @@ from rest_framework_csv.parsers import CSVParser, universal_newlines, unicode_cs
 
 
 class Parser(CSVParser):
-
+    """
+    Реализует парсинг и ввалидацию
+    """
     def validate(self, row, index):
+        """
+        Валидатор, в случае ошибки рейзит ParseError с описанием и локацией.
+
+        args: list(строка файла), int(номер строки для локации ошибки на клиент)
+        return: str(Имя клиента), str(Имя камня), dict(Данные о сделке)
+        """
+
         if len(row) != 5:
             raise ParseError(f'Ошибка в строке {index}: неверное кол-во элементов')
 
@@ -46,6 +55,12 @@ class Parser(CSVParser):
         return customer_name, gem_name, deal
 
     def parse(self, stream):
+        """
+        Парсит, построчно валидирует, отлавливает исключения и ререйзит.
+
+        args: файл.CSV
+        return: set(имена клиентво), set(имена камней), list(dict(словари с данными по сделкам))
+        """
         delimiter = ','
         encoding = settings.DEFAULT_CHARSET
 
@@ -73,7 +88,14 @@ class Parser(CSVParser):
 
 
 def create_inexistent_items(items, Model):
+    """
+    Находит существующие объекты, недостсающие создаёт,
+    возвращает словарь ключ(Имя): значение(объект с pk)
 
+    args: list|set|tuple(имена объектов), Model
+    return: dict
+
+    """
     existed_items = Model.objects.all()
     output = {}
 

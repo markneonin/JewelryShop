@@ -2,6 +2,9 @@ from django.db import models
 
 
 class Gem(models.Model):
+    """
+    Камень
+    """
     name = models.CharField(verbose_name='Название камня', max_length=4096, unique=True)
 
     def __str__(self):
@@ -13,6 +16,9 @@ class Gem(models.Model):
 
 
 class Customer(models.Model):
+    """
+    Клиент
+    """
     name = models.CharField(verbose_name='Имя клиента', max_length=256, unique=True)
 
     def __str__(self):
@@ -24,6 +30,10 @@ class Customer(models.Model):
 
 
 class Deal(models.Model):
+    """
+    Сделка, fk - камень и клиент, каскадно не удаляется.
+    """
+
     customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
     gem = models.ForeignKey(Gem, on_delete=models.DO_NOTHING)
     quantity = models.IntegerField()
