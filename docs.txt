@@ -1,0 +1,35 @@
+Создание сделок в БД:
+    URL: 'http://<host>/api/deals/'
+    METHOD: POST
+    REQUEST BODY:
+
+    {
+    'deals': deals.csv
+    }
+
+    Требования к кодировке файла: UTF-8
+    Делиметер: ","
+
+
+Информация о пяти клиентах, которые потратили больше всего денег:
+    URL: 'http://<host>/api/deals/'
+    METHOD: GET
+    RESPONSE BODY:
+
+    [
+    {
+    'username': 'Mark',
+    'spent_money': 100500,
+    'gems': ['Камень', 'Камень поменьше', 'Совсем маленький камень']
+    } ...
+    ]
+
+
+
+
+
+
+
+
+
+
