@@ -34,7 +34,7 @@ class Deal(models.Model):
     Сделка, fk - камень и клиент, каскадно не удаляется.
     """
 
-    customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
+    customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, db_index=True)
     gem = models.ForeignKey(Gem, on_delete=models.DO_NOTHING)
     quantity = models.IntegerField()
     amount = models.IntegerField()
